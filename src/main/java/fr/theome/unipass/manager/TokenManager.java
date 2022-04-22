@@ -1,7 +1,5 @@
 package fr.theome.unipass.manager;
 
-import org.apache.commons.lang.RandomStringUtils;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,7 +11,18 @@ import java.security.NoSuchAlgorithmException;
 public class TokenManager {
 
     public String getRandomToken(){
-        return RandomStringUtils.randomAlphanumeric(32);
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        StringBuilder sb = new StringBuilder(32);
+
+        for (int i = 0; i < 32; i++) {
+            int index = (int)(AlphaNumericString.length()* Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+
+        return sb.toString();
     }
 
     public String getHashedToken(String token) {
