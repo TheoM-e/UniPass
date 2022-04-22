@@ -1,3 +1,4 @@
 # UniPass
-Beta project - Still under development
-\n Dont forget to change content of /keys/cred.key (follow instruction)
+Beta project:
+- Still under development
+- Dont forget to change content of /keys/cred.key (follow instruction)
