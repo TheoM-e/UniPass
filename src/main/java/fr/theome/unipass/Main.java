@@ -1,8 +1,11 @@
 package fr.theome.unipass;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.theome.unipass.manager.DBManager;
+import fr.theome.unipass.manager.KeyManager;
 import fr.theome.unipass.manager.TokenManager;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -16,26 +19,24 @@ public class Main {
 
         DBManager dbManager = new DBManager();
         TokenManager tokenManager = new TokenManager();
+        KeyManager keyManager = new KeyManager();
+
         String token = tokenManager.getRandomToken();
+        String mirrorToken = tokenManager.getHashedToken(tokenManager.getRandomToken());
+        String salt = tokenManager.byteToString(tokenManager.getNextSalt());
 
         dbManager.insertDocument(
-                        token, tokenManager.getHashedToken(token), true,
+                token, mirrorToken, salt, tokenManager.encodedBySalt(token, tokenManager.stringToByte(salt)), true,
                 new ArrayList<>(
                         Arrays.asList(
                                 new HashMap<String, String>() {{
-                                    put("LastUpdate", String.valueOf(new Date().getTime() / 1000));
+                                    put("lastUpdate", String.valueOf(new Date().getTime() / 1000));
                                 }},
                                 new HashMap<String, String>() {{
-                                    put("Use", "3");
+                                    put("use", "3");
                                 }})
                 )
         );
 
-        System.out.println(dbManager.getDoc("_id", "HDNrOmWdYC7Y5nzeBIgqBg4xcuthTK1S"));
-
-        //{SuSKbm3OVtPVUYMVaiqW8Iuf8ECXMKhY: {lastToken: SuSKbm3OVtPVUYMVaiqW8Iuf8ECXMKhY, isAvailable: true, use: 3, lastUpdate: 1650644570}}
-
-
     }
-
 }
