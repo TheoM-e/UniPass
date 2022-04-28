@@ -1,11 +1,9 @@
 package fr.theome.unipass;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.theome.unipass.manager.DBManager;
 import fr.theome.unipass.manager.KeyManager;
 import fr.theome.unipass.manager.TokenManager;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -37,6 +35,5 @@ public class Main {
                                 }})
                 )
         );
-
     }
 }
