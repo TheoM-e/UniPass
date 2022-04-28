@@ -1,4 +1,4 @@
-# UniPass
-Beta project:
-- Still under development
-- Dont forget to change content of /keys/cred.key (follow instruction)
+# 🔐 UniPass
+## 🔭 About
+Read project's description for more.
+Unipass is actually under developpement, so some classes can be replace in the future.
